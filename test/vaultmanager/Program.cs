@@ -1,7 +1,6 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using CommandLineParser.Exceptions;
+using System;
 using vaultsharp;
-using vaultsharp.native;
 
 namespace vaultmanager
 {
@@ -9,25 +8,30 @@ namespace vaultmanager
     {
         static void Main(string[] args)
         {
-            var credentialTarget = "MicrosoftOffice16_Data:SSPI:mapitestuser@gsx.com";
+            try
+            {
+                var options = new Options();
+                var parser = new CommandLineParser.CommandLineParser();
 
-            IntPtr creds;
+                parser.ExtractArgumentAttributes(options);
+                parser.ParseCommandLine(args);
 
-            //Class1.EnumerateCredentials();
+                if (options.Read)
+                {
+                    var cred = WindowsCredentialManager.ReadCredential(options.TargetName);
+                    Console.WriteLine(cred);
+                    return;
+                }
 
-            //var success = CredentialManagerWrapper.CredRead(credentialTarget, CredentialType.CRED_TYPE_GENERIC, 0, out creds);
-            //var c = (NativeCredential)Marshal.PtrToStructure(creds, typeof(NativeCredential));
-
-            //string applicationName = Marshal.PtrToStringUni(c.TargetName);
-            //string userName = Marshal.PtrToStringUni(c.UserName);
-            //string secret = null;
-            //if (c.CredentialBlob != IntPtr.Zero)
-            //{
-            //    secret = Marshal.PtrToStringUni(c.CredentialBlob, (int)c.CredentialBlobSize / 2);
-            //}
-
-
-            WindowsCredentialManager.WriteCredentials(credentialTarget, "", "plop");
+                if (options.Write)
+                {
+                    WindowsCredentialManager.WriteCredentials(options.TargetName, options.UserName, options.Password);
+                }
+            }
+            catch(CommandLineException e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }
