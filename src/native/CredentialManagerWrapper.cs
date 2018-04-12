@@ -59,22 +59,19 @@ namespace vaultsharp.native
 
     internal class CredentialManagerWrapper
     {
-        [DllImport("Advapi32.dll", EntryPoint = "CredDeleteW", CharSet = CharSet.Unicode, SetLastError = true)]
+        [DllImport("advapi32.dll", EntryPoint = "CredDeleteW", CharSet = CharSet.Unicode, SetLastError = true)]
         internal static extern bool CredDelete(string target, CredentialType type, int reservedFlag);
 
-        [DllImport("Advapi32.dll", EntryPoint = "CredReadW", CharSet = CharSet.Unicode, SetLastError = true)]
+        [DllImport("advapi32.dll", EntryPoint = "CredReadW", CharSet = CharSet.Unicode, SetLastError = true)]
         internal static extern bool CredRead(string target, CredentialType type, int reservedFlag, out IntPtr CredentialPtr);
 
-        [DllImport("Advapi32.dll", EntryPoint = "CredWriteW", CharSet = CharSet.Unicode, SetLastError = true)]
+        [DllImport("advapi32.dll", EntryPoint = "CredWriteW", CharSet = CharSet.Unicode, SetLastError = true)]
         internal static extern bool CredWrite([In] ref NativeCredential userCredential, [In] UInt32 flags);
 
-        [DllImport("Advapi32.dll", EntryPoint = "CredFree", SetLastError = true)]
+        [DllImport("advapi32.dll", EntryPoint = "CredFree", SetLastError = true)]
         internal static extern bool CredFree([In] IntPtr cred);
 
         [DllImport("advapi32", SetLastError = true, CharSet = CharSet.Unicode)]
         internal static extern bool CredEnumerate(string filter, int flag, out int count, out IntPtr credentials);
-
-        [DllImport("ole32.dll", EntryPoint = "CoTaskMemFree", SetLastError = true)]
-        internal static extern void CoTaskMemFree(IntPtr buffer);
     }
 }

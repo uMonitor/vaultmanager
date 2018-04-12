@@ -7,19 +7,40 @@ namespace vaultsharp
     {
         public static void WriteCredentials(string applicationName, string userName, string secret)
         {
-            var byteArray = SecretManager.GetSecretAsByteArray(secret);
-            var credential = native.NativeCredential.Default;
+            var credential = new CredentialWrapper(applicationName, userName, secret);
 
-            credential.CredentialBlobSize = (uint)(byteArray == null ? 0 : byteArray.Length);
-            credential.TargetName = Marshal.StringToCoTaskMemUni(applicationName);
-            credential.CredentialBlob = Marshal.StringToCoTaskMemUni(secret);
-            credential.UserName = Marshal.StringToCoTaskMemUni(userName ?? Environment.UserName);
-
-            var writeStatus = native.CredentialManagerWrapper.CredWrite(ref credential, 0);
+            var nativeCredential = credential.Native;
+            var writeStatus = native.CredentialManagerWrapper.CredWrite(ref nativeCredential, 0);
 
             if (!writeStatus)
             {
+                int lastError = Marshal.GetLastWin32Error();
+                throw new Exception($"CredWrite failed with the error code {lastError}.");
+            }
+        }
 
+        public static Credential ReadCredential(string applicationName)
+        {
+            var credentialPtr = IntPtr.Zero;
+
+            try
+            {
+                var readStatus = native.CredentialManagerWrapper.CredRead(applicationName, native.CredentialType.Generic, 0, out credentialPtr);
+
+                if (!readStatus)
+                {
+                    int lastError = Marshal.GetLastWin32Error();
+                    throw new Exception($"CredRead failed with the error code {lastError}.");
+                }
+
+                var nativeCredential = (native.NativeCredential)Marshal.PtrToStructure(credentialPtr, typeof(native.NativeCredential));
+                var credential = CredentialWrapper.Convert(nativeCredential);
+
+                return credential;
+            }
+            finally
+            {
+                native.CredentialManagerWrapper.CredFree(credentialPtr);
             }
         }
 
