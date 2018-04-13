@@ -3,7 +3,7 @@ using CommandLineParser.Validation;
 
 namespace vaultmanager
 {
-    [ArgumentGroupCertification("r,w", EArgumentGroupCondition.ExactlyOneUsed)]
+    [ArgumentGroupCertification("r,w,e", EArgumentGroupCondition.ExactlyOneUsed)]
     [ArgumentRequiresOtherArgumentsCertification("r", "t")]
     [ArgumentRequiresOtherArgumentsCertification("w", "t,u,p")]
     class Options
@@ -14,6 +14,9 @@ namespace vaultmanager
         [SwitchArgument('w', "write", false)]
         public bool Write;
 
+        [SwitchArgument('e', "enumerate", false)]
+        public bool Enumerate;
+
         [ValueArgument(typeof(string), 't', "target", Description = "Application Name")]
         public string TargetName;
 
@@ -22,5 +25,8 @@ namespace vaultmanager
 
         [ValueArgument(typeof(string), 'p', "password", Description = "Password")]
         public string Password;
+
+        [ValueArgument(typeof(string), 'o', "output-file", Description = "Output File")]
+        public string OutputFile;
     }
 }
