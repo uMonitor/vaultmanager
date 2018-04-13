@@ -8,11 +8,26 @@ namespace vaultsharp
     {
         public string TargetName { get; internal set; }
         public string UserName { get; internal set; }
-        public string Secret { get; internal set; }
+
+        private string _secret = string.Empty;
+        public string Secret
+        {
+            get
+            {
+                var bytes = System.Text.Encoding.UTF8.GetBytes(_secret);
+                return Convert.ToBase64String(bytes);
+            }
+
+            internal set
+            {
+                _secret = value;
+            }
+        }
 
         public override string ToString()
         {
-            return $"{TargetName}: Username={UserName} - Password={Secret}";
+            var username = UserName ?? string.Empty;
+            return $"{TargetName}: Username='{username}' Password={Secret}";
         }
     }
 
@@ -51,7 +66,10 @@ namespace vaultsharp
 
             if (native.CredentialBlob != IntPtr.Zero)
             {
-                credential.Secret = Marshal.PtrToStringUni(native.CredentialBlob, (int)native.CredentialBlobSize / 2);
+                var rawSecret = Marshal.PtrToStringUni(native.CredentialBlob, (int)native.CredentialBlobSize / 2);
+
+                var bytes = System.Text.Encoding.UTF8.GetBytes(rawSecret);
+                credential.Secret =  System.Convert.ToBase64String(bytes);
             }
 
             return credential;
