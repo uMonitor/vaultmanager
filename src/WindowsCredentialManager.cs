@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 namespace vaultsharp
@@ -44,43 +45,29 @@ namespace vaultsharp
             }
         }
 
-        private static void ReadCredential(native.NativeCredential credential)
+        public static List<Credential> EnumerateCredentials()
         {
-            string applicationName = Marshal.PtrToStringUni(credential.TargetName);
-            string userName = Marshal.PtrToStringUni(credential.UserName);
-            string secret = null;
-            if (credential.CredentialBlob != IntPtr.Zero)
-            {
-                secret = Marshal.PtrToStringUni(credential.CredentialBlob, (int)credential.CredentialBlobSize / 2);
-            }
+            var result = new List<Credential>();
 
-            //return new Credential(credential.Type, applicationName, userName, secret);
-        }
+            bool enumerateStatus = native.CredentialManagerWrapper.CredEnumerate(null, 0, out int count, out IntPtr pCredentials);
 
-        public static void EnumerateCredentials()
-        {
-            //List<Credential> result = new List<Credential>();
-
-            int count;
-            IntPtr pCredentials;
-            bool ret = native.CredentialManagerWrapper.CredEnumerate(null, 0, out count, out pCredentials);
-            if (ret)
+            if (enumerateStatus)
             {
                 for (int n = 0; n < count; n++)
                 {
-                    IntPtr credential = Marshal.ReadIntPtr(pCredentials, n * Marshal.SizeOf(typeof(IntPtr)));
-                    ReadCredential((native.NativeCredential)Marshal.PtrToStructure(credential, typeof(native.NativeCredential)));
+                    IntPtr credentialPtr = Marshal.ReadIntPtr(pCredentials, n * Marshal.SizeOf(typeof(IntPtr)));
+                    var credential = CredentialWrapper.Convert((native.NativeCredential)Marshal.PtrToStructure(credentialPtr, typeof(native.NativeCredential)));
 
-                    //result.Add(ReadCredential((CREDENTIAL)Marshal.PtrToStructure(credential, typeof(CREDENTIAL))));
+                    result.Add(credential);
                 }
             }
             else
             {
-                //int lastError = Marshal.GetLastWin32Error();
-                //throw new Win32Exception(lastError);
+                int lastError = Marshal.GetLastWin32Error();
+                throw new Exception($"Enumerate {lastError}");
             }
 
-            //return result;
+            return result;
         }
     }
 }
