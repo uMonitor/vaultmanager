@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using vaultsharp.native;
 
 namespace vaultsharp
 {
     public class WindowsCredentialManager
     {
-        public static void WriteCredentials(string applicationName, string userName, string secret)
+        public static void WriteCredentials(string applicationName, string userName, string secret, int credentialPersistence)
         {
-            var credential = new CredentialWrapper(applicationName, userName, secret);
+            var credential = new CredentialWrapper(applicationName, userName, secret, credentialPersistence);
 
             var nativeCredential = credential.Native;
-            var writeStatus = native.CredentialManagerWrapper.CredWrite(ref nativeCredential, 0);
+            var writeStatus = CredentialManagerWrapper.CredWrite(ref nativeCredential, 0);
 
             if (!writeStatus)
             {
@@ -26,7 +27,7 @@ namespace vaultsharp
 
             try
             {
-                var readStatus = native.CredentialManagerWrapper.CredRead(applicationName, native.CredentialType.Generic, 0, out credentialPtr);
+                var readStatus = CredentialManagerWrapper.CredRead(applicationName, CredentialType.Generic, 0, out credentialPtr);
 
                 if (!readStatus)
                 {
@@ -34,14 +35,14 @@ namespace vaultsharp
                     throw new Exception($"CredRead failed with the error code {lastError}.");
                 }
 
-                var nativeCredential = (native.NativeCredential)Marshal.PtrToStructure(credentialPtr, typeof(native.NativeCredential));
+                var nativeCredential = (NativeCredential)Marshal.PtrToStructure(credentialPtr, typeof(NativeCredential));
                 var credential = CredentialWrapper.Convert(nativeCredential);
 
                 return credential;
             }
             finally
             {
-                native.CredentialManagerWrapper.CredFree(credentialPtr);
+                CredentialManagerWrapper.CredFree(credentialPtr);
             }
         }
 
@@ -49,14 +50,14 @@ namespace vaultsharp
         {
             var result = new List<Credential>();
 
-            bool enumerateStatus = native.CredentialManagerWrapper.CredEnumerate(null, 0, out int count, out IntPtr pCredentials);
+            bool enumerateStatus = CredentialManagerWrapper.CredEnumerate(null, 0, out int count, out IntPtr pCredentials);
 
             if (enumerateStatus)
             {
                 for (int n = 0; n < count; n++)
                 {
                     IntPtr credentialPtr = Marshal.ReadIntPtr(pCredentials, n * Marshal.SizeOf(typeof(IntPtr)));
-                    var credential = CredentialWrapper.Convert((native.NativeCredential)Marshal.PtrToStructure(credentialPtr, typeof(native.NativeCredential)));
+                    var credential = CredentialWrapper.Convert((NativeCredential)Marshal.PtrToStructure(credentialPtr, typeof(NativeCredential)));
 
                     result.Add(credential);
                 }

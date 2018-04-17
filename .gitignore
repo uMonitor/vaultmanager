@@ -3,3 +3,4 @@ Release/
 *.dll
 *.obj
 .vs
+*.user

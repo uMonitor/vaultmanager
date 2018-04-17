@@ -15,7 +15,7 @@ namespace vaultsharp.native
         MaximumEx = Maximum + 1000
     }
 
-    public enum CredentialPersistance: uint
+    public enum CredentialPersistence: uint
     {
         Session = 1,
         LocalMachine = 2,
@@ -32,7 +32,7 @@ namespace vaultsharp.native
         public System.Runtime.InteropServices.ComTypes.FILETIME LastWritten;
         public UInt32 CredentialBlobSize;
         public IntPtr CredentialBlob;
-        public CredentialPersistance Persist;
+        public CredentialPersistence Persist;
         public UInt32 AttributeCount;
         public IntPtr Attributes;
         public IntPtr TargetAlias;
@@ -49,7 +49,7 @@ namespace vaultsharp.native
                     Comment = IntPtr.Zero,
                     TargetAlias = IntPtr.Zero,
                     Type = CredentialType.Generic,
-                    Persist = CredentialPersistance.LocalMachine
+                    Persist = CredentialPersistence.Session
                 };
 
                 return defaultCredential;

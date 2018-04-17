@@ -1,5 +1,6 @@
 ﻿using CommandLineParser.Arguments;
 using CommandLineParser.Validation;
+using vaultsharp.native;
 
 namespace vaultmanager
 {
@@ -28,5 +29,10 @@ namespace vaultmanager
 
         [ValueArgument(typeof(string), 'o', "output-file", Description = "Output File")]
         public string OutputFile;
+
+        [EnumeratedValueArgument(typeof(int), 'c', "credential-persistence", 
+            Description = "Credential persistence(Session=1, LocalMachine=2, Enterprise=3)", 
+            DefaultValue = 2, AllowedValues = "1;2;3")]
+        public int CredentialPersitence;
     }
 }

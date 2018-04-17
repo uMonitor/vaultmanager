@@ -44,7 +44,7 @@ namespace vaultsharp
 
         public Credential Credential { get; internal set; }
 
-        public CredentialWrapper(string applicationName, string userName, string secret)
+        public CredentialWrapper(string applicationName, string userName, string secret, int credentialPersistence)
         {
             _native = NativeCredential.Default;
 
@@ -53,7 +53,17 @@ namespace vaultsharp
             _native.CredentialBlobSize = (uint)(byteArray == null ? 0 : byteArray.Length);
             _native.TargetName = Marshal.StringToCoTaskMemUni(applicationName);
             _native.CredentialBlob = Marshal.StringToCoTaskMemUni(secret);
-            _native.UserName = Marshal.StringToCoTaskMemUni(userName ?? Environment.UserName);
+
+            if (string.IsNullOrEmpty(userName))
+            {
+                _native.UserName = IntPtr.Zero;
+            }
+            else
+            {
+                _native.UserName = Marshal.StringToCoTaskMemUni(userName ?? Environment.UserName);
+            }
+
+            _native.Persist = (CredentialPersistence)credentialPersistence;
         }
 
         public static Credential Convert(NativeCredential native)
@@ -67,9 +77,7 @@ namespace vaultsharp
             if (native.CredentialBlob != IntPtr.Zero)
             {
                 var rawSecret = Marshal.PtrToStringUni(native.CredentialBlob, (int)native.CredentialBlobSize / 2);
-
-                var bytes = System.Text.Encoding.UTF8.GetBytes(rawSecret);
-                credential.Secret =  System.Convert.ToBase64String(bytes);
+                credential.Secret =  rawSecret;
             }
 
             return credential;

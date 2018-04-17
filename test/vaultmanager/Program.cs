@@ -43,7 +43,7 @@ namespace vaultmanager
 
                     if (options.Write)
                     {
-                        WindowsCredentialManager.WriteCredentials(options.TargetName, options.UserName, options.Password);
+                        WindowsCredentialManager.WriteCredentials(options.TargetName, options.UserName, options.Password, options.CredentialPersitence);
                         return;
                     }
 
