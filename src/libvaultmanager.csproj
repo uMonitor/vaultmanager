@@ -7,8 +7,8 @@
     <ProjectGuid>{34F5BE13-70AE-4A6F-B7C8-1042427BD688}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>vaultsharp</RootNamespace>
-    <AssemblyName>vaultsharp</AssemblyName>
+    <RootNamespace>libvaultmanager</RootNamespace>
+    <AssemblyName>libvaultmanager</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

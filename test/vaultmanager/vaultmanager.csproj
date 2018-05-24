@@ -58,9 +58,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\vaultsharp.csproj">
+    <ProjectReference Include="..\..\src\libvaultmanager.csproj">
       <Project>{34f5be13-70ae-4a6f-b7c8-1042427bd688}</Project>
-      <Name>vaultsharp</Name>
+      <Name>libvaultmanager</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

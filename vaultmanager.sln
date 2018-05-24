@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vaultsharp", "src\vaultsharp.csproj", "{34F5BE13-70AE-4A6F-B7C8-1042427BD688}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libvaultmanager", "src\libvaultmanager.csproj", "{34F5BE13-70AE-4A6F-B7C8-1042427BD688}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vaultmanager", "test\vaultmanager\vaultmanager.csproj", "{51313FE0-67EE-4C17-8E77-80BC344433E7}"
 EndProject

@@ -1,5 +1,6 @@
-Debug/
-Release/
+bin/
+[d|D]ebug/
+[r|R]elease/
 *.dll
 *.obj
 .vs
