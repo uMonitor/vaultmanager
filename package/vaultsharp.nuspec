@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
     <metadata>
         <id>vaultmanager</id>
         <version>$version$</version>
         <title>vaultmanager</title>
-        <authors>Jonathan Muller</authors>
+        <authors>Jonathan Muller &lt;muller.john@gmail.com&gt;</authors>
         <owners>Jonathan Muller</owners>
         <licenseUrl>https://raw.githubusercontent.com/Bhaal22/vaultmanager/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/Bhaal22/vaultmanager</projectUrl>
@@ -13,10 +13,12 @@
         <description>Allows you to manipulate credentials stored in Windows credential manager.</description>
         <summary>Allows you to manipulate credentials stored in Windows credential manager.</summary>
         <releaseNotes />
-        <copyright>drylm.org 2018</copyright>
+        <copyright>@drylm.org 2018</copyright>
+        <language>en-EN</language>
         <tags>csharp credential-manager</tags>
     </metadata>
     <files>
-        <file src="..\src\bin\Release\libvaultmanager.dll" target="lib\net46\libvaultmanager.dll" />
+        <file src="..\src\bin\Release\net45\libvaultmanager.dll" target="lib\net45\libvaultmanager.dll" />
+        <file src="..\src\bin\Release\net46\libvaultmanager.dll" target="lib\net46\libvaultmanager.dll" />
     </files>
 </package>
