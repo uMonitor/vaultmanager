@@ -12,12 +12,15 @@
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
         <description>Allows you to manipulate credentials stored in Windows credential manager.</description>
         <summary>Allows you to manipulate credentials stored in Windows credential manager.</summary>
-        <releaseNotes />
+        <releaseNotes>0.2.0
+  - target multiple frameworks: net45 / net46</releaseNotes>
         <copyright>@drylm.org 2018</copyright>
         <language>en-EN</language>
         <tags>csharp credential-manager</tags>
     </metadata>
     <files>
+        <file src="..\CHANGELOG" target="content\CHANGELOG" />
+        <file src="..\LICENSE" target="content\LICENSE" />
         <file src="..\src\bin\Release\net45\libvaultmanager.dll" target="lib\net45\libvaultmanager.dll" />
         <file src="..\src\bin\Release\net46\libvaultmanager.dll" target="lib\net46\libvaultmanager.dll" />
     </files>
