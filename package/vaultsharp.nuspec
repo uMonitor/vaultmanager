@@ -1,22 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>vaultmanager</id>
         <version>$version$</version>
         <title>vaultmanager</title>
         <authors>Jonathan Muller</authors>
         <owners>Jonathan Muller</owners>
-        <licenseUrl>https://github.com/Bhaal22/vaultmanager/blob/master/LICENSE</licenseUrl>
+        <licenseUrl>https://raw.githubusercontent.com/Bhaal22/vaultmanager/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/Bhaal22/vaultmanager</projectUrl>
-        <iconUrl></iconUrl>
+        <iconUrl>https://raw.githubusercontent.com/Bhaal22/vaultmanager/master/resources/icon.png</iconUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
-        <description>Allow you to run powershell scripts into .net applications</description>
+        <description>Allows you to manipulate credentials stored in Windows credential manager.</description>
+        <summary>Allows you to manipulate credentials stored in Windows credential manager.</summary>
         <releaseNotes />
         <copyright>drylm.org 2018</copyright>
         <tags>csharp credential-manager</tags>
-        <dependencies>
-        </dependencies>
     </metadata>
     <files>
+        <file src="..\src\bin\Release\libvaultmanager.dll" target="lib\net46\libvaultmanager.dll" />
     </files>
 </package>
