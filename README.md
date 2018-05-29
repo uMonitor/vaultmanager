@@ -43,7 +43,7 @@ Note, the password is written out as base64 string.
 
 # Write a credential
 
-```
+```c#
 WindowsCredentialManager.WriteCredential("applicationName", "username", "password", (int)CredentialPersistence.LocalMachine);
 ```
 
