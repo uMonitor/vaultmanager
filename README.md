@@ -49,4 +49,4 @@ WindowsCredentialManager.WriteCredential("applicationName",
                                          (int)CredentialPersistence.LocalMachine);
 ```
 
-Note, that password encryption is up to the caller to set it. If password is set in crlear, then it can be read in clear.
+Note, that password encryption is up to the caller to set it. If password is set in clear, then it can be read in clear.
