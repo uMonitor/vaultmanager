@@ -44,7 +44,9 @@ Note, the password is written out as base64 string.
 # Write a credential
 
 ```c#
-WindowsCredentialManager.WriteCredential("applicationName", "username", "password", (int)CredentialPersistence.LocalMachine);
+WindowsCredentialManager.WriteCredential("applicationName",
+                                         "username", "password", 
+                                         (int)CredentialPersistence.LocalMachine);
 ```
 
 Note, that password encryption is up to the caller to set it. If password is set in crlear, then it can be read in clear.
