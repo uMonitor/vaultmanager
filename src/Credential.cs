@@ -20,7 +20,7 @@ namespace vaultsharp
         public override string ToString()
         {
             var username = UserName ?? string.Empty;
-            return $"{TargetName}: Username='{username}' Password={Secret}";
+            return $"{TargetName}: Username='{username}' Password=*****";
         }
     }
 
