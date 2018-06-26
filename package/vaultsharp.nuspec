@@ -18,7 +18,7 @@
         <tags>csharp credential-manager</tags>
     </metadata>
     <files>
-        <file src="..\CHANGELOG" target="content\CHANGELOG" />
+        <file src="..\CHANGELOG.md" target="content\CHANGELOG.md" />
         <file src="..\LICENSE" target="content\LICENSE" />
         <file src="..\src\bin\Release\net45\libvaultmanager.dll" target="lib\net45\libvaultmanager.dll" />
         <file src="..\src\bin\Release\net46\libvaultmanager.dll" target="lib\net46\libvaultmanager.dll" />
