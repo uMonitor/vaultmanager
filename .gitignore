@@ -1,7 +1,9 @@
 bin/
+package/
 [d|D]ebug/
 [r|R]elease/
 *.dll
 *.obj
 .vs
 *.user
+obj/

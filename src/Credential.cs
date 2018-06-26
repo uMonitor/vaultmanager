@@ -9,19 +9,12 @@ namespace vaultsharp
         public string TargetName { get; internal set; }
         public string UserName { get; internal set; }
 
-        private string _secret = string.Empty;
-        public string Secret
-        {
-            get
-            {
-                var bytes = System.Text.Encoding.UTF8.GetBytes(_secret);
-                return Convert.ToBase64String(bytes);
-            }
+        public byte[] Secret { get; set; }
 
-            internal set
-            {
-                _secret = value;
-            }
+
+        public T GetSecret<T>(Func<byte[], T> data_extract)
+        {
+            return data_extract(Secret);
         }
 
         public override string ToString()
@@ -76,8 +69,8 @@ namespace vaultsharp
 
             if (native.CredentialBlob != IntPtr.Zero)
             {
-                var rawSecret = Marshal.PtrToStringUni(native.CredentialBlob, (int)native.CredentialBlobSize / 2);
-                credential.Secret =  rawSecret;
+                credential.Secret = new byte[native.CredentialBlobSize];
+                Marshal.Copy(native.CredentialBlob, credential.Secret, 0, (int)native.CredentialBlobSize);
             }
 
             return credential;
