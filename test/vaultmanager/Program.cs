@@ -57,6 +57,11 @@ namespace vaultmanager
 
                         return;
                     }
+
+                    if (options.Delete)
+                    {
+                        WindowsCredentialManager.DeleteCredential(options.TargetName);
+                    }
                 }
                 catch(Exception ex)
                 {

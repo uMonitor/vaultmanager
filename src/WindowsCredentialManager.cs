@@ -32,7 +32,7 @@ namespace vaultsharp
                 if (!readStatus)
                 {
                     int lastError = Marshal.GetLastWin32Error();
-                    throw new Exception($"CredRead failed with the error code {lastError}.");
+                    throw new CredentialManagerException((ErrorCode)lastError);
                 }
 
                 var nativeCredential = (NativeCredential)Marshal.PtrToStructure(credentialPtr, typeof(NativeCredential));
@@ -44,6 +44,18 @@ namespace vaultsharp
             {
                 CredentialManagerWrapper.CredFree(credentialPtr);
             }
+        }
+
+        public static void DeleteCredential(string applicationName, CredentialType type = CredentialType.Generic)
+        {
+            var deleteStatus = CredentialManagerWrapper.CredDelete(applicationName, type, 0);
+
+            if (!deleteStatus)
+            {
+                int lastError = Marshal.GetLastWin32Error();
+                throw new CredentialManagerException((ErrorCode)lastError);
+            }
+
         }
 
         public static List<Credential> EnumerateCredentials()
@@ -65,7 +77,7 @@ namespace vaultsharp
             else
             {
                 int lastError = Marshal.GetLastWin32Error();
-                throw new Exception($"Enumerate {lastError}");
+                throw new CredentialManagerException((ErrorCode)lastError);
             }
 
             return result;

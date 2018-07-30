@@ -4,9 +4,10 @@ using vaultsharp.native;
 
 namespace vaultmanager
 {
-    [ArgumentGroupCertification("r,w,e", EArgumentGroupCondition.ExactlyOneUsed)]
+    [ArgumentGroupCertification("r,w,e,d", EArgumentGroupCondition.ExactlyOneUsed)]
     [ArgumentRequiresOtherArgumentsCertification("r", "t")]
     [ArgumentRequiresOtherArgumentsCertification("w", "t,u,p")]
+    [ArgumentRequiresOtherArgumentsCertification("d", "t")]
     class Options
     {
         [SwitchArgument('r', "read", false)]
@@ -17,6 +18,9 @@ namespace vaultmanager
 
         [SwitchArgument('e', "enumerate", false)]
         public bool Enumerate;
+
+        [SwitchArgument('d', "delete", false)]
+        public bool Delete;
 
         [ValueArgument(typeof(string), 't', "target", Description = "Application Name")]
         public string TargetName;

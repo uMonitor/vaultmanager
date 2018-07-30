@@ -3,6 +3,16 @@ using System.Runtime.InteropServices;
 
 namespace vaultsharp.native
 {
+    /***
+     * https://docs.microsoft.com/en-us/windows/desktop/api/wincred/nf-wincred-credenumeratea
+     ***/
+    public enum ErrorCode: uint
+    {
+        INVALID_FLAGS = 0x3Ec,          //A flag that is not valid was specified for the Flags parameter, or CRED_ENUMERATE_ALL_CREDENTIALS is specified for the Flags parameter and the Filter parameter is not NULL.
+        NOT_FOUND = 0x490,              //No credential exists matching the specified Filter
+        NO_SUCH_LOGON_SESSION = 0x520   //The logon session does not exist or there is no credential set associated with this logon session. Network logon sessions do not have an associated credential set.
+    }
+
     public enum CredentialType: uint
     {
         Generic = 1,
