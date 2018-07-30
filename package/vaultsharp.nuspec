@@ -22,5 +22,13 @@
         <file src="..\LICENSE" target="content\LICENSE" />
         <file src="..\src\bin\Release\net45\libvaultmanager.dll" target="lib\net45\libvaultmanager.dll" />
         <file src="..\src\bin\Release\net46\libvaultmanager.dll" target="lib\net46\libvaultmanager.dll" />
+        <file src="..\test\vaultmanager\bin\Debug\net45\CommandLineArgumentsParser.dll" target="tools\net45\CommandLineArgumentsParser.dll" />
+        <file src="..\test\vaultmanager\bin\Debug\net45\libvaultmanager.dll" target="tools\net45\libvaultmanager.dll" />
+        <file src="..\test\vaultmanager\bin\Debug\net45\vaultmanager.exe" target="tools\net45\vaultmanager.exe" />
+        <file src="..\test\vaultmanager\bin\Debug\net45\vaultmanager.exe.config" target="tools\net45\vaultmanager.exe.config" />
+        <file src="..\test\vaultmanager\bin\Debug\net46\CommandLineArgumentsParser.dll" target="tools\net46\CommandLineArgumentsParser.dll" />
+        <file src="..\test\vaultmanager\bin\Debug\net46\libvaultmanager.dll" target="tools\net46\libvaultmanager.dll" />
+        <file src="..\test\vaultmanager\bin\Debug\net46\vaultmanager.exe" target="tools\net46\vaultmanager.exe" />
+        <file src="..\test\vaultmanager\bin\Debug\net46\vaultmanager.exe.config" target="tools\net46\vaultmanager.exe.config" />
     </files>
 </package>
