@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "libvaultmanager", "src\libv
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vaultmanager", "test\vaultmanager\vaultmanager.csproj", "{51313FE0-67EE-4C17-8E77-80BC344433E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "outlook_credential_reader", "outlook_credential_reader\outlook_credential_reader.csproj", "{082516A8-7555-445A-AC91-66BCED584CD4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "outlook_credential_reader", "test\outlook_credential_reader\outlook_credential_reader.csproj", "{082516A8-7555-445A-AC91-66BCED584CD4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "teams_credential_reader", "test\teams_credential_reader\teams_credential_reader.csproj", "{7C86F39B-DD13-4724-AAB9-E23DDF5CA763}"
 EndProject
