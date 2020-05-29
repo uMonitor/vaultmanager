@@ -1,3 +1,6 @@
+# 0.4.1
+  * restored package on nuget.org
+
 # 0.4.0
   * support credential deletion
   * Read / Delete and Enumerate operations throw dedicated Exception: **CredentialManagerException**
