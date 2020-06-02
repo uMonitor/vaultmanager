@@ -7,13 +7,13 @@
         <authors>Jonathan Muller &lt;muller.john@gmail.com&gt;</authors>
         <owners>Jonathan Muller</owners>
         <licenseUrl>https://raw.githubusercontent.com/Bhaal22/vaultmanager/master/LICENSE</licenseUrl>
-        <projectUrl>https://github.com/Bhaal22/vaultmanager</projectUrl>
-        <iconUrl>https://raw.githubusercontent.com/Bhaal22/vaultmanager/master/resources/icon.png</iconUrl>
+        <projectUrl>https://github.com/umonitor/vaultmanager</projectUrl>
+        <iconUrl>https://raw.githubusercontent.com/umonitor/vaultmanager/master/resources/icon.png</iconUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
         <description>Allows you to manipulate credentials stored in Windows credential manager.</description>
         <summary>Allows you to manipulate credentials stored in Windows credential manager.</summary>
-        <releaseNotes>https://github.com/Bhaal22/vaultmanager/blob/master/CHANGELOG.md</releaseNotes>
-        <copyright>@drylm.org 2018</copyright>
+        <releaseNotes>https://github.com/umonitor/vaultmanager/blob/master/CHANGELOG.md</releaseNotes>
+        <copyright>@drylm.org 2020</copyright>
         <language>en-EN</language>
         <tags>csharp credential-manager</tags>
     </metadata>
