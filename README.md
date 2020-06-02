@@ -32,7 +32,7 @@ foreach (var cred in credentials)
 }
 ```
 
-# Add a credential to the credential manager
+# Read a credential to the credential manager
 
 ```c#
 var credential = WindowsCredentialManager.ReadCredential("git:https://github.com");
